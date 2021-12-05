@@ -3,14 +3,25 @@
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
+    xmlns:f="sap.f"
 >
     <Shell id="shell">
         <App id="app">
             <pages>
                 <Page id="page" title="{i18n>title}">
                     <content />
+                    <mvc:XMLView viewName="com.storeapp.storeapp.view.Home"/>
                 </Page>
             </pages>
+          <f:FlexibleColumnLayout
+            id="layout"
+            busy="{appView>/busy}"
+            busyIndicatorDelay="{appView>/delay}"
+            layout="{Products>/layout}"
+            backgroundDesign="Translucent"
+            class="sapUiDemoCart"
+            stateChange=".onStateChange">
+          </f:FlexibleColumnLayout>
         </App>
     </Shell>
 </mvc:View>

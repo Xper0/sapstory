@@ -1,0 +1,22 @@
+[
+  {
+    "CategoryName": "Accessories",
+    "NumberOfProducts": 3,
+    "categ": "monitors"
+  },
+  {
+    "CategoryName": "Accessories",
+    "NumberOfProducts": 3,
+    "categ": "PC"
+  },
+  {
+    "CategoryName": "Accessories",
+    "NumberOfProducts": 3,
+    "categ": "netbook"
+  },
+  {
+    "CategoryName": "Accessories",
+    "NumberOfProducts": 3,
+    "categ": "speakers"
+  }
+]

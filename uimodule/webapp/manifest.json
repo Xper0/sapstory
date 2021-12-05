@@ -31,7 +31,12 @@
     "dependencies": {
       "minUI5Version": "1.60",
       "libs": {
-        "sap.ui.core": {}
+        "sap.ui.core": {},
+        "sap.m": {
+        },
+        "sap.f": {
+        },
+        "sap.ui.layout": {}
       }
     },
     "contentDensities": {
@@ -44,8 +49,18 @@
         "settings": {
           "bundleName": "com.storeapp.storeapp.i18n.i18n"
         }
+      },
+      "productses": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "../localService/metadata/Product.json"
+      },
+      "category": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "categories.json"
+
       }
     },
+
     "resources": {
       "css": [
         {
@@ -65,20 +80,47 @@
       },
       "routes": [
         {
-          "name": "RouteMainView",
-          "pattern": "RouteMainView",
+          "name": "Home",
+          "pattern": "",
           "target": [
             "TargetMainView"
           ]
+        },
+        {
+          "pattern": "Products",
+          "name": "Products",
+          "target": "Products",
+          "controlAggregation": "beginColumnPages"
+        },
+        {
+          "pattern": "Products/detail/{detailId}",
+          "name": "detail",
+          "controlAggregation": "endColumnPages",
+          "target": [
+            "Products",
+            "Detail"]
         }
-      ],
+
+          ],
       "targets": {
         "TargetMainView": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "MainView",
-          "viewName": "MainView"
+          "viewId": "Home",
+          "viewName": "Home",
+          "viewLevel" : 1
+        },
+        "Products": {
+          "viewId": "Products",
+          "viewName": "Products",
+          "viewType": "XML",
+          "transition": "slide",
+          "viewLevel" : 2
+        },
+        "Detail": {
+          "viewType": "XML",
+          "viewName": "Detail"
         }
       }
     },
@@ -86,7 +128,7 @@
       "viewName": "com.storeapp.storeapp.view.MainView",
       "type": "XML",
       "async": true,
-      "id": "MainView"
+      "id": "app"
     }
   }
 }

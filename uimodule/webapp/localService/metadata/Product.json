@@ -1,0 +1,46 @@
+
+[
+  {
+    "id": 1,
+    "MainCategory": "Monitors",
+    "Name": "Acer",
+    "Model": "K272HLEbid (UM.HX3EE.E04)",
+    "PictureUrl": "metadata/image/mon1.jpg",
+    "Price": "956"
+  },
+  {
+    "id": 2,
+    "MainCategory": "Keyboard",
+    "Name": "Defender",
+
+    "Price": "1200"
+  },
+  {
+    "id": 3,
+    "MainCategory": "PC",
+    "Name": "PC aerocool",
+    "PictureUrl": "",
+    "Price": "5000"
+  },
+  {
+    "id": 4,
+    "MainCategory": "Keyboard",
+    "Name": "China mex",
+    "PictureUrl": "",
+    "Price": "1200"
+  },
+  {
+    "id": 5,
+    "MainCategory": "PC",
+    "Name": "Intel",
+    "PictureUrl": "",
+    "Price": "4900"
+  },
+  {
+    "id": 6,
+    "MainCategory": "Monitors",
+    "Name": "ViewSonic",
+    "PictureUrl": "",
+    "Price": "1900"
+  }
+]

@@ -1,0 +1,60 @@
+<mvc:View
+  controllerName="com.storeapp.storeapp.controller.Home"
+  xmlns:mvc="sap.ui.core.mvc"
+  displayBlock="true"
+  xmlns="sap.m"
+>
+  <Shell id="shell">
+        <Page id="page" title="{i18n>title}">
+          <content />
+          <Toolbar>
+            <VBox class="sapUiSmallMargin">
+              <Button
+                id="button"
+                text="Category"
+                press="onPress"
+                ariaHasPopup="Menu"
+                width="250px"
+                class="category-Btn"
+                icon="sap-icon://menu"
+              />
+            </VBox>
+            <ToolbarSpacer/>
+            <SearchField
+              id="searchField"
+              width="50%"
+              placeholder="Search for..."
+              enableSuggestions="true"
+              search=".onSearch"
+              suggest=".onSuggest"
+              suggestionItems="{
+			        	path: '/',
+				        sorter: { path: 'Name' }
+			           }">
+              <SuggestionItem
+                text="{MainCategory}: {Name}"
+                description="{path: 'MainCategory'}: {path: 'Name'} {path:'Price'} "
+                key="{id}"
+              />
+            </SearchField>
+          </Toolbar>
+          <List
+            headerText="{i18n>invoiceListTitle}"
+            id="categoryList"
+            items="{category>/}"
+            class="sapUiResponsiveMargin"
+            width="auto"
+          >
+            <items>
+              <StandardListItem
+                title="{category>categ}"
+                press="onPageProduct"
+                type="Navigation"
+
+                >
+              </StandardListItem>
+            </items>
+          </List>
+        </Page>
+  </Shell>
+</mvc:View>

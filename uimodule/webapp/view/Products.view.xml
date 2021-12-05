@@ -1,0 +1,83 @@
+<mvc:View
+  controllerName="com.storeapp.storeapp.controller.Product"
+  xmlns:mvc="sap.ui.core.mvc"
+  displayBlock="true"
+  xmlns="sap.m"
+>
+    <Page
+      title="{i18n>pageName}"
+      showNavButton="true"
+      navButtonPress=".onNavBack">
+      <customHeader >
+        <Bar >
+          <contentLeft>
+            <Button text="Назад"
+                    press=".onNavBack"/>
+          </contentLeft>
+          <contentMiddle >
+            <Title
+              level="H2"
+              text="{i18n>comparisonTitle}"/>
+          </contentMiddle>
+          <contentRight>
+            <Button
+              icon="sap-icon://customer"
+              press=".onAvatarPress"
+              tooltip="{i18n>avatarButtonTooltip}"/>
+            <ToggleButton
+              icon="sap-icon://cart"
+              pressed="{= ${Products>/layout}.startsWith('ThreeColumns') }"
+              tooltip="{i18n>toCartButtonTooltip}"
+              press=".onToggleCart">
+            </ToggleButton>
+          </contentRight>
+        </Bar>
+      </customHeader>
+      <content>
+        <Table
+          id="table"
+          items="{Products>/}"
+        >
+          <columns
+
+          >
+            <Column width="7rem">
+              <Label text="Product Id" />
+            </Column>
+            <Column width="7rem">
+              <Label text="Image" />
+            </Column>
+            <Column width="7rem">
+              <Label text="Product Name" />
+            </Column>
+            <Column width="6rem" hAlign="End">
+              <Label text="Cost" />
+            </Column>
+          </columns>
+
+          <items>
+            <ColumnListItem
+              press="onShowDetail"
+              type="Navigation"
+            >
+              <cells>
+                <Text text="{Products>id}" />
+                <Text text="" />
+                <Text text="{Products>Name}" />
+                <Text text="{Products>Price}" />
+                <ObjectIdentifier
+                  title="{Name}"
+                  text="{ProductId}"
+                  class="sapUiTinyMarginTopBottom" />
+              </cells>
+            </ColumnListItem>
+          </items>
+
+        </Table>
+      </content>
+    </Page>
+
+
+
+
+</mvc:View>

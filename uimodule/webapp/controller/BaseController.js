@@ -6,9 +6,9 @@ sap.ui.define(
         "com/storeapp/storeapp/model/formatter"
     ],
     /**
-     * @param {typeof sap.ui.core.mvc.Controller} Controller 
-     * @param {typeof sap.ui.core.routing.History} History 
-     * @param {typeof sap.ui.core.UIComponent} UIComponent 
+     * @param {typeof sap.ui.core.mvc.Controller} Controller
+     * @param {typeof sap.ui.core.routing.History} History
+     * @param {typeof sap.ui.core.UIComponent} UIComponent
      */
     function (Controller, History, UIComponent, formatter) {
         "use strict";
@@ -61,15 +61,26 @@ sap.ui.define(
                 return UIComponent.getRouterFor(this);
             },
 
-            onNavBack: function () {
+            onNavBack: function ( ) {
                 var sPreviousHash = History.getInstance().getPreviousHash();
-
+                console.log(sPreviousHash)
                 if (sPreviousHash !== undefined) {
                     window.history.back();
                 } else {
                     this.getRouter().navTo("appHome", {}, true /*no history*/);
                 }
+            },
+          /**
+           * Sets the flexible column layout to one, two, or three columns for the different scenarios across the app
+           * @param {string} sColumns the target amount of columns
+           * @private
+           */
+          _setLayout: function (sColumns) {
+            console.log("вызов в base")
+            if (sColumns) {
+              this.getModel("Products").setProperty("/layout", sColumns + "Column" + (sColumns === "One" ? "" : "sMidExpanded"));
             }
+          },
         });
     }
 );
