@@ -5,11 +5,6 @@ sap.ui.define([
   return Controller.extend("com.storeapp.storeapp.controller.Detail", {
     onInit: function () {
       var oRouter = this.getRouter();
-
-      oRouter.getRoute("detail").attachMatched(this._onObjectMatched, this);
-
-      // var oRouter = this.getOwnerComponent().getRouter();
-      // oRouter.getRoute("detail").attachPatternMatched(this._onObjectMatched, this);
     },
     _onObjectMatched: function (oEvent) {
       // var oArgs, oView;

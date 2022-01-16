@@ -1,0 +1,22 @@
+{
+  "cartEntries": {
+    "6": {
+      "id": 6,
+      "MainCategory": "Monitors",
+      "Name": "ViewSonic",
+      "Quantity": 1,
+      "PictureUrl": "mon1.jpg",
+      "Price": "1200",
+      "Currency": "USD"
+    },
+    "3": {
+      "id": 3,
+      "MainCategory": "Monitors",
+      "Name": "Aaop",
+      "Quantity": 3,
+      "PictureUrl": "aerocool1.png",
+      "Price": "800",
+      "Currency": "USD"
+    }
+  }
+}

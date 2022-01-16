@@ -1,27 +1,228 @@
 <mvc:View
     controllerName="com.storeapp.storeapp.controller.MainView"
     xmlns:mvc="sap.ui.core.mvc"
-    displayBlock="true"
     xmlns="sap.m"
     xmlns:f="sap.f"
+    xmlns:tnt="sap.tnt"
+    xmlns:layout= "sap.ui.layout"
 >
-    <Shell id="shell">
-        <App id="app">
-            <pages>
-                <Page id="page" title="{i18n>title}">
-                    <content />
-                    <mvc:XMLView viewName="com.storeapp.storeapp.view.Home"/>
-                </Page>
-            </pages>
-          <f:FlexibleColumnLayout
-            id="layout"
-            busy="{appView>/busy}"
-            busyIndicatorDelay="{appView>/delay}"
-            layout="{Products>/layout}"
-            backgroundDesign="Translucent"
-            class="sapUiDemoCart"
-            stateChange=".onStateChange">
-          </f:FlexibleColumnLayout>
+
+  <App id="app">
+    <tnt:ToolPage
+      id="toolPage"
+      class="sapUiDemoToolPage"
+    >
+      <tnt:header>
+        <tnt:ToolHeader>
+          <Vbox
+            justifyContent="Center"
+            alignItems="Center"
+          >
+            <Image height="2.5rem"
+                   class="sapUiSmallMarginBegin"
+                   src="../localService/metadata/image/logo.png"
+                   press="onHome"
+            />
+            <ToolbarSpacer/>
+          </Vbox>
+          <Title
+            text="{i18n>appTitle}"
+            level="H1"/>
+          <ToolbarSpacer/>
+
+          <SearchField
+            id="searchFields"
+            visible="false"
+            width="50%"
+            placeholder="Search for..."
+            enableSuggestions="true"
+            search=".onSearch"
+            suggest=".onSuggest"
+            suggestionItems="{
+			        	path: 'myProductModel>/',
+				        sorter: { path: 'Name' }
+			           }">
+            <SuggestionItem
+              text="{myProductModel>MainCategory}: {myProductModel>Name}"
+              description="{path: 'myProductModel>Model'}  {path:'myProductModel>Price'} {path:'myProductModel>Currency'} "
+              key="{id}"
+            />
+          </SearchField>
+          <OverflowToolbarButton
+            id="searchField"
+            text="Search"
+            tooltip="Search"
+            icon="sap-icon://search"
+            type="Transparent"
+            press="showSearch"
+          />
+          <Button
+            icon="sap-icon://customer"
+            press=".onAvatarPress"
+            tooltip="avatarButton"/>
+          <Button
+            icon="sap-icon://pie-chart"
+            tooltip="Statistic"
+            press="onShowStatistic"
+          />
+          <ToggleButton
+            id="BadgedButton"
+            icon="sap-icon://cart"
+            tooltip="CartButton"
+            press=".onToggleCart"
+          >
+            <customData>
+              <BadgeCustomData
+                key="badge"
+                value="{
+              	path : 'cartProducts>/cartEntries',
+					    	formatter : '.formatter._updateCartCount'
+                }"
+                visible="true"/>
+            </customData>
+          </ToggleButton>
+
+        </tnt:ToolHeader>
+      </tnt:header>
+      <tnt:subHeader>
+        <tnt:ToolHeader>
+          <IconTabHeader
+            select=".onItemSelect"
+          >
+            <items>
+              <IconTabFilter
+                key="{category>/}"
+                items="{path: 'category>/'}"
+                text="Category"
+              >
+                <items>
+                  <IconTabFilter
+                    text="{category>CategoryName}"
+                    key="{category>CategoryName}">
+                  </IconTabFilter>
+                </items>
+              </IconTabFilter>
+            </items>
+          </IconTabHeader>
+<!--          <IconTabHeader-->
+
+<!--            selectedKey="{/selectedKey}"-->
+<!--            items="{path: 'category>/'}"-->
+<!--            select=".onItemSelect"-->
+<!--            mode="Inline">-->
+<!--            <layoutData>-->
+<!--              <OverflowToolbarLayoutData priority="NeverOverflow" shrinkable="true" />-->
+<!--            </layoutData>-->
+<!--            <items>-->
+<!--              <IconTabFilter-->
+<!--                items="{path: 'category>/'}"-->
+<!--                text="Category"-->
+<!--                key="{key}">-->
+<!--                <items>-->
+<!--                  <IconTabFilter-->
+<!--                    text="{category>CategoryName}"-->
+<!--                    key="{key}">-->
+<!--                  </IconTabFilter>-->
+<!--                </items>-->
+<!--              </IconTabFilter>-->
+<!--            </items>-->
+<!--          </IconTabHeader>-->
+        </tnt:ToolHeader>
+      </tnt:subHeader>
+      <tnt:mainContents>
+         <NavContainer id="pageContainer">
+          </NavContainer>
+      </tnt:mainContents>
+    </tnt:ToolPage>
+
+    <!--          <tnt:ToolPage-->
+<!--            id="toolPage"-->
+<!--            class="sapUiDemoToolPage">-->
+<!--            <tnt:header>-->
+<!--              <tnt:ToolHeader >-->
+<!--                <Vbox-->
+<!--                  justifyContent="Center"-->
+<!--                  alignItems="Center"-->
+<!--                >-->
+<!--                  <Image height="2.5rem"-->
+<!--                         class="sapUiSmallMarginBegin"-->
+<!--                         src="../localService/metadata/image/logo.png"-->
+<!--                         press="onHome"-->
+<!--                  />-->
+<!--                  <ToolbarSpacer/>-->
+<!--                </Vbox>-->
+<!--                <Title-->
+<!--                  text="{i18n>appTitle}"-->
+<!--                  level="H1"/>-->
+<!--                <ToolbarSpacer/>-->
+<!--                <Button-->
+<!--                  icon="sap-icon://customer"-->
+<!--                  press=".onAvatarPress"-->
+<!--                  tooltip="avatarButton"/>-->
+<!--                <Button-->
+<!--                  icon="sap-icon://pie-chart"-->
+<!--                  tooltip="Statistic"-->
+<!--                  press="onShowStatistic"-->
+<!--                />-->
+<!--                <ToggleButton-->
+<!--                  id="BadgedButton"-->
+<!--                  icon="sap-icon://cart"-->
+<!--                  tooltip="CartButton"-->
+<!--                  press=".onToggleCart"-->
+<!--                >-->
+<!--                  <customData>-->
+<!--                    <BadgeCustomData-->
+<!--                      key="badge"-->
+<!--                      value=""-->
+<!--                      visible="true"/>-->
+<!--                  </customData>-->
+<!--                </ToggleButton>-->
+
+<!--              </tnt:ToolHeader>-->
+<!--            </tnt:header>-->
+<!--&lt;!&ndash;            <tnt:subHeader>&ndash;&gt;-->
+<!--&lt;!&ndash;              <tnt:ToolHeader >&ndash;&gt;-->
+
+<!--&lt;!&ndash;              </tnt:ToolHeader>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tnt:subHeader>&ndash;&gt;-->
+
+<!--            <tnt:mainContents>-->
+
+<!--              <NavContainer id="pageContainer" >-->
+
+<!--              </NavContainer>-->
+
+<!--&lt;!&ndash;                <f:FlexibleColumnLayout id="flexibleColumnLayout" backgroundDesign="Solid">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <f:beginColumnPages>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mvc:XMLView id="Homes" viewName="com.storeapp.storeapp.view.Home"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </f:beginColumnPages>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <f:midColumnPages>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mvc:XMLView id="Products" viewName="com.storeapp.storeapp.view.Products"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </f:midColumnPages>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <f:endColumnPages>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mvc:XMLView id="Cart" viewName="com.storeapp.storeapp.view.Cart"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </f:endColumnPages>&ndash;&gt;-->
+<!--&lt;!&ndash;                </f:FlexibleColumnLayout>&ndash;&gt;-->
+<!--            </tnt:mainContents>-->
+
+<!--          </tnt:ToolPage>-->
+<!--&lt;!&ndash;          <f:FlexibleColumnLayout id="flexibleColumnLayout" backgroundDesign="Solid">&ndash;&gt;-->
+<!--&lt;!&ndash;            <f:beginColumnPages>&ndash;&gt;-->
+<!--&lt;!&ndash;              <mvc:XMLView id="Homes" viewName="com.storeapp.storeapp.view.Home"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </f:beginColumnPages>&ndash;&gt;-->
+<!--&lt;!&ndash;            <f:midColumnPages>&ndash;&gt;-->
+<!--&lt;!&ndash;              <mvc:XMLView id="Products" viewName="com.storeapp.storeapp.view.Products"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </f:midColumnPages>&ndash;&gt;-->
+<!--&lt;!&ndash;            <f:endColumnPages>&ndash;&gt;-->
+<!--&lt;!&ndash;              <mvc:XMLView id="Cart" viewName="com.storeapp.storeapp.view.Cart"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </f:endColumnPages>&ndash;&gt;-->
+<!--&lt;!&ndash;          </f:FlexibleColumnLayout>&ndash;&gt;-->
+<!--&lt;!&ndash;            <pages>&ndash;&gt;-->
+<!--&lt;!&ndash;                <Page id="page" title="{i18n>title}">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <content />&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mvc:XMLView viewName="com.storeapp.storeapp.view.Home"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </Page>&ndash;&gt;-->
+<!--&lt;!&ndash;            </pages>&ndash;&gt;-->
         </App>
-    </Shell>
+
 </mvc:View>

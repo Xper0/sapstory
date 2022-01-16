@@ -2,11 +2,13 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/UIComponent",
     "sap/ui/core/routing/History",
-  "../model/formatter"
+  "../model/formatter",
+    "../model/cart",
   ],
-  function (Controller, UIComponent,History, formatter){
+  function (Controller, UIComponent,History, formatter, cart){
     return Controller.extend("com.storeapp.storeapp.controller.Product", {
       formatter: formatter,
+      cart: cart,
       onInit: function () {
         var oRouter =  this.getOwnerComponent().getRouter();
         oRouter.getRoute("detail").attachMatched(this._onObjectMatched, this);
@@ -20,8 +22,9 @@ sap.ui.define([
         oView = this.getView();
         oView.bindElement({
           path: "/" + oItem ,
-          model: "productses",
+          model: "myProductModel",
         })
+        console.log(oView)
       },
       onNavBack: function ( ) {
         let oHistory = History.getInstance()
@@ -33,6 +36,11 @@ sap.ui.define([
           oRouter.navTo("Products", {}, true);
         }
       },
+      onAddToCart: function (oEvent) {
+        let oProduct = oEvent.getSource().getBindingContext("myProductModel").getObject();  //  получение item
+        let oCart = oEvent.getSource().getModel("cartProducts") //  получение модели json
+        cart.addToCart(oProduct, oCart)
+      }
 
     })
   });

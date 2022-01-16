@@ -1,5 +1,7 @@
 /* Enter your custom styles here */
-
+*{
+  box-sizing: border-box;
+}
 
 #button{
   height: 150px;
@@ -17,4 +19,147 @@
 
 .menu-item{
   background: aqua;
+}
+
+
+.myClass{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+}
+
+.listProduct{
+  min-width: 300px;
+  min-height: 370px;
+  background: #FFFFFF;
+  border: 1px solid #F3F3F3;
+  box-sizing: border-box;
+  border-radius: 10px;
+  transition: ease-in-out 0.3s;
+  box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+}
+
+.listProduct:hover{
+  background: #FFFFFF;
+  border: 1px solid #F8F8F8;
+  box-sizing: border-box;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
+  transform: translateY(-12px);
+
+}
+
+.Cart-title{
+  color: #279EF9;
+  font-size: 40px;
+
+}
+
+.Cart-desc{
+  color: #279EF9;
+  font-size: 35px;
+}
+
+.cart-box{
+  padding: 15px;
+  /*min-height: 250px;*/
+  width: 100%;
+  /*border: 2px solid #279EF9;*/
+}
+.input-Range .sapMInputBaseInner{
+
+  font-size: 20px;
+}
+
+/*.input-Range .sapMInputBaseContentWrapper {*/
+/*  height: 50px;*/
+/*}*/
+
+.Header-card .sapFCardHeader {
+  background: #182a52;
+
+}
+.cartCard .sapFCard{
+  background: #DBE2EF;
+}
+
+.cardText .sapMTextMaxLine{
+  color: #FFFFFF;
+  font-size: 20px;
+}
+
+.delete__Item .sapMBtnInner{
+  /*position: absolute;*/
+  /*top: -120px;*/
+  /*right: -10px;*/
+  border:none;
+  background:  #1186ca;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  /*width: 45px;*/
+  /*height: 35px;*/
+  color: #FFFFFF;
+}
+
+.sapMBtn .sapUiIcon {
+  color: #FFFFFF;
+  width: 30px;
+  height: 30px;
+
+}
+
+.delete__Item .sapMBtnInner:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+
+}
+
+.flex-content{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 80px 0;
+}
+
+/*.content-Card{*/
+/*  padding: 40px;*/
+/*}*/
+.toolBar-Text{
+  font-size: 25px;
+}
+.sapMLIB.sapMObjLItem {
+  padding: 1rem;
+  background: transparent;
+}
+
+.detailContainer .sapMFlexBoxBGTransparent{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sapFCard .sapFCardHeader .sapFCardHeaderText .sapFCardTitle{
+ font-size: 2rem;
+}
+.sapFCard .sapFCardHeader .sapFCardSubtitle{
+ font-size: 24px;
+}
+
+.sapMLabel, .sapMText, .sapMObjLNumberDiv .sapMObjectNumber .sapMObjectNumberText  {
+  font-size: 1.5rem;
+}
+.sapUiSizeCompact .sapMBtnIcon {
+  font-size: 1.5rem;
+}
+
+.sapMITBFilter .sapMITBFilterWrapper {
+  min-width: 400px;
+  max-width: 100%;
+}
+
+.sapMITBFilter .sapMITBText {
+  font-size: 18px;
+}
+
+.sapMLIB.sapMObjLItem {
+  border: none;
 }

@@ -1,0 +1,21 @@
+<mvc:View
+  controllerName="com.storeapp.storeapp.controller.PurchaseStatistics"
+  xmlns:mvc="sap.ui.core.mvc"
+  displayBlock="true"
+  xmlns="sap.m"
+  xmlns:viz="sap.viz.ui5.controls"
+>
+  <Page
+    title="Purchase Statistics"
+    showNavButton="true"
+    navButtonPress=".onNavBacks"
+  >
+    <viz:Popover id="idPopOver"></viz:Popover>
+    <viz:VizFrame id="idVizFrameStatic" uiConfig="{applicationSet:'fiori'}"
+                  height='100%' width="100%" vizType='column'
+                  legendVisible="true"
+                  selectData="showDetail"
+    >
+    </viz:VizFrame>
+  </Page>
+</mvc:View>

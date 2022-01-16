@@ -1,83 +1,145 @@
 <mvc:View
   controllerName="com.storeapp.storeapp.controller.Product"
   xmlns:mvc="sap.ui.core.mvc"
-  displayBlock="true"
   xmlns="sap.m"
+  xmlns:f="sap.f"
+  displayBlock="true"
 >
-    <Page
-      title="{i18n>pageName}"
-      showNavButton="true"
-      navButtonPress=".onNavBack">
-      <customHeader >
-        <Bar >
-          <contentLeft>
-            <Button text="Назад"
-                    press=".onNavBack"/>
-          </contentLeft>
-          <contentMiddle >
-            <Title
-              level="H2"
-              text="{i18n>comparisonTitle}"/>
-          </contentMiddle>
-          <contentRight>
-            <Button
-              icon="sap-icon://customer"
-              press=".onAvatarPress"
-              tooltip="{i18n>avatarButtonTooltip}"/>
-            <ToggleButton
-              icon="sap-icon://cart"
-              pressed="{= ${Products>/layout}.startsWith('ThreeColumns') }"
-              tooltip="{i18n>toCartButtonTooltip}"
-              press=".onToggleCart">
-            </ToggleButton>
-          </contentRight>
-        </Bar>
-      </customHeader>
-      <content>
-        <Table
-          id="table"
-          items="{Products>/}"
-        >
-          <columns
+  <f:DynamicPage
+    id="dynamicPageId"
+    toggleHeaderOnTitleClick="false"
+  >
+    <!-- DynamicPage Title -->
+    <f:title>
+      <f:DynamicPageTitle>
+        <f:heading>
+          <Title text="{i18n>pageName}"/>
+        </f:heading>
+<!--        <f:navigationActions>-->
+<!--          <Button text="назад" press=".onNavBack"/>-->
+<!--          <Button-->
+<!--            icon="sap-icon://customer"-->
+<!--            press=".onAvatarPress"-->
+<!--            tooltip="avatarButton"/>-->
+<!--          <ToggleButton-->
+<!--            icon="sap-icon://cart"-->
+<!--            tooltip="CartButton"-->
+<!--            press=".onToggleCart">-->
+<!--          </ToggleButton>-->
+<!--        </f:navigationActions>-->
+      </f:DynamicPageTitle>
+    </f:title>
+    <f:content>
+                <Table
+                  id="table"
+                  items="{myProductModel>/}"
+                  growing="true"
+                  growingThreshold="9"
+                >
+                  <headerToolbar>
+                    <OverflowToolbar>
+                      <content>
+                        <Title text="Products" level="H2"/>
+                        <ToolbarSpacer />
 
-          >
-            <Column width="7rem">
-              <Label text="Product Id" />
-            </Column>
-            <Column width="7rem">
-              <Label text="Image" />
-            </Column>
-            <Column width="7rem">
-              <Label text="Product Name" />
-            </Column>
-            <Column width="6rem" hAlign="End">
-              <Label text="Cost" />
-            </Column>
-          </columns>
+                        <Button
+                          id="sortButton"
+                          press=".handleSortButtonPressed"
+                          icon="sap-icon://sort"
+                          type="Transparent"/>
+                        <Button
+                          id="filterButton"
+                          press=".handleFilterButtonPressed"
+                          icon="sap-icon://filter"
+                          type="Transparent"/>
+                      </content>
+                    </OverflowToolbar>
+                  </headerToolbar>
+                  <columns
 
-          <items>
-            <ColumnListItem
-              press="onShowDetail"
-              type="Navigation"
-            >
-              <cells>
-                <Text text="{Products>id}" />
-                <Text text="" />
-                <Text text="{Products>Name}" />
-                <Text text="{Products>Price}" />
-                <ObjectIdentifier
-                  title="{Name}"
-                  text="{ProductId}"
-                  class="sapUiTinyMarginTopBottom" />
-              </cells>
-            </ColumnListItem>
-          </items>
+                  >
+                    <Column width="3rem">
+                      <Label text="Product Id" />
+                    </Column>
+                    <Column width="3rem">
+                      <Label text="Image" />
+                    </Column>
+                    <Column width="3rem">
+                      <Label text="Product Name" />
+                    </Column>
+                    <Column width="3rem">
+                      <Label text="Model" />
+                    </Column>
+                    <Column width="4rem" hAlign="End">
+                      <Label text="Cost" />
+                    </Column>
+                  </columns>
 
-        </Table>
-      </content>
-    </Page>
-
-
-
-
+                  <items>
+                    <ColumnListItem
+                      press="onShowDetail"
+                      type="Navigation"
+                    >
+                      <cells>
+                        <Text text="{myProductModel>id}" />
+                        <Avatar
+                          src="localService/metadata/image/{myProductModel>PictureUrl}"
+                          displaySize="L"
+                          displayShape="Square"
+                          showBorder="true"
+                        />
+                        <Text text="{myProductModel>Name}" />
+                        <Text text="{myProductModel>Model}" />
+                        <ObjectNumber
+                          unit="{myProductModel>Currency}"
+                          number="{
+      										path: 'myProductModel>Price',
+      										formatter: '.formatter.numberUnit'
+      										}"
+                          state="Information"
+                        />
+                        <ObjectIdentifier
+                          title="{Name}"
+                          text="{ProductId}"
+                          class="sapUiTinyMarginTopBottom" />
+                      </cells>
+                    </ColumnListItem>
+                  </items>
+                </Table>
+    </f:content>
+<!--    <Page-->
+<!--      title="{i18n>pageName}"-->
+<!--      showNavButton="true"-->
+<!--      navButtonPress=".onNavBack">-->
+<!--      <customHeader >-->
+<!--        <Bar >-->
+<!--          <contentLeft>-->
+<!--            <Button text="Назад"-->
+<!--                    press=".onNavBack"/>-->
+<!--          </contentLeft>-->
+<!--          <contentMiddle >-->
+<!--            <Title-->
+<!--              level="H1"-->
+<!--              text="Category Products"/>-->
+<!--          </contentMiddle>-->
+<!--          <contentRight>-->
+<!--            <Button-->
+<!--              icon="sap-icon://customer"-->
+<!--              press=".onAvatarPress"-->
+<!--              tooltip="avatarButton"/>-->
+<!--            <ToggleButton-->
+<!--              icon="sap-icon://cart"-->
+<!--              pressed="{= ${Products>/layout}.startsWith('ThreeColumns') }"-->
+<!--              tooltip="CartButton"-->
+<!--              press=".onToggleCart">-->
+<!--            </ToggleButton>-->
+<!--          </contentRight>-->
+<!--        </Bar>-->
+<!--      </customHeader>-->
+<!--      <Panel>-->
+<!--        <content>-->
+<!--        </content>-->
+<!--      </Panel>-->
+<!--    </Page>-->
+  </f:DynamicPage>
 </mvc:View>

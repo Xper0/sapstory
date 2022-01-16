@@ -1,22 +1,32 @@
 [
   {
-    "CategoryName": "Accessories",
-    "NumberOfProducts": 3,
+    "CategoryName": "All",
+    "NumberOfProducts": 1,
+    "categ": "All"
+  },
+  {
+    "CategoryName": "Monitors",
+    "NumberOfProducts": 2,
     "categ": "monitors"
   },
   {
-    "CategoryName": "Accessories",
-    "NumberOfProducts": 3,
+    "CategoryName": "PC",
+    "NumberOfProducts":3,
     "categ": "PC"
   },
   {
-    "CategoryName": "Accessories",
-    "NumberOfProducts": 3,
+    "CategoryName": "netbook",
+    "NumberOfProducts": 4,
     "categ": "netbook"
   },
   {
-    "CategoryName": "Accessories",
-    "NumberOfProducts": 3,
+    "CategoryName": "Speakers",
+    "NumberOfProducts": 5,
     "categ": "speakers"
+  },
+  {
+    "CategoryName": "Keyboard",
+    "NumberOfProducts": 6,
+    "categ": "keyboard"
   }
 ]

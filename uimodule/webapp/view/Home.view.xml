@@ -3,58 +3,195 @@
   xmlns:mvc="sap.ui.core.mvc"
   displayBlock="true"
   xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  xmlns:f="sap.f"
+  xmlns:card="sap.f.cards"
+  xmlns:tnt="sap.tnt"
 >
-  <Shell id="shell">
-        <Page id="page" title="{i18n>title}">
-          <content />
-          <Toolbar>
-            <VBox class="sapUiSmallMargin">
-              <Button
-                id="button"
-                text="Category"
-                press="onPress"
-                ariaHasPopup="Menu"
-                width="250px"
-                class="category-Btn"
-                icon="sap-icon://menu"
-              />
-            </VBox>
-            <ToolbarSpacer/>
-            <SearchField
-              id="searchField"
-              width="50%"
-              placeholder="Search for..."
-              enableSuggestions="true"
-              search=".onSearch"
-              suggest=".onSuggest"
-              suggestionItems="{
-			        	path: '/',
-				        sorter: { path: 'Name' }
-			           }">
-              <SuggestionItem
-                text="{MainCategory}: {Name}"
-                description="{path: 'MainCategory'}: {path: 'Name'} {path:'Price'} "
-                key="{id}"
-              />
-            </SearchField>
-          </Toolbar>
-          <List
-            headerText="{i18n>invoiceListTitle}"
-            id="categoryList"
-            items="{category>/}"
-            class="sapUiResponsiveMargin"
-            width="auto"
-          >
-            <items>
-              <StandardListItem
-                title="{category>categ}"
-                press="onPageProduct"
-                type="Navigation"
+  <ScrollContainer
+    height="100%"
+    width="100%"
+    vertical="true"
+    focusable="true">
 
-                >
-              </StandardListItem>
-            </items>
-          </List>
-        </Page>
-  </Shell>
+
+<VBox justifyContent="SpaceBetween" alignItems="SpaceBetween">
+  <!--          <headerContent>-->
+  <!--            <Button-->
+  <!--              icon="sap-icon://pie-chart"-->
+  <!--              tooltip="Statistic"-->
+  <!--              press="onShowStatistic"-->
+  <!--            />-->
+  <!--          </headerContent>-->
+  <!--          <content />-->
+<!--  <Toolbar height="auto"  class="Hidden">-->
+<!--    <VBox class="sapUiSmallMargin">-->
+<!--      <OverflowToolbar>-->
+<!--        <Button-->
+<!--          text="Category"-->
+<!--          icon="sap-icon://menu2"-->
+<!--          press=".onCollapseExpandPress"-->
+<!--        />-->
+<!--      </OverflowToolbar>-->
+<!--      <tnt:NavigationList-->
+<!--        id="navigationList"-->
+<!--        width="320px"-->
+<!--        selectedKey="subItem3"-->
+<!--        visible="false"-->
+<!--        items="{path: 'category>/'}"-->
+<!--      >-->
+<!--        <tnt:NavigationListItem-->
+<!--          text="{category>CategoryName}"-->
+<!--          select="onSelectItem"-->
+<!--        />-->
+<!--      </tnt:NavigationList>-->
+<!--    </VBox>-->
+<!--    <ToolbarSpacer/>-->
+<!--    <SearchField-->
+<!--      id="searchField"-->
+<!--      width="50%"-->
+<!--      placeholder="Search for..."-->
+<!--      enableSuggestions="true"-->
+<!--      search=".onSearch"-->
+<!--      suggest=".onSuggest"-->
+<!--      suggestionItems="{-->
+<!--			        	path: 'myProductModel>/',-->
+<!--				        sorter: { path: 'Name' }-->
+<!--			           }">-->
+<!--      <SuggestionItem-->
+<!--        text="{myProductModel>MainCategory}: {myProductModel>Name}"-->
+<!--        description="{path: 'myProductModel>Model'}  {path:'myProductModel>Price'} {path:'myProductModel>Currency'} "-->
+<!--        key="{id}"-->
+<!--      />-->
+<!--    </SearchField>-->
+<!--  </Toolbar>-->
+
+<!--  <FlexBox-->
+<!--    width="100%"-->
+<!--    wrap="Wrap"-->
+<!--    direction="Row"-->
+<!--    items="{productses>/}"-->
+<!--  >-->
+<!--    <f:Card class="sapUiMediumMargin listProduct" width="250px"-->
+
+<!--    >-->
+<!--      <f:header>-->
+<!--        <card:Header-->
+<!--          title="{productses>Name}"-->
+<!--          subtitle="{productses>Model}"-->
+<!--          press="onShowDetail"-->
+
+<!--        />-->
+<!--      </f:header>-->
+<!--      <f:content >-->
+<!--        <Vbox-->
+<!--          width="300px" height="200px"-->
+<!--          class="sapUiSmallMargin"-->
+<!--          justifyContent="SpaceBetween"-->
+<!--        >-->
+<!--          <Hbox justifyContent="Center" >-->
+<!--            &lt;!&ndash;                    <Image&ndash;&gt;-->
+<!--            &lt;!&ndash;                      width="50%" height="50%"&ndash;&gt;-->
+<!--            &lt;!&ndash;                      src="localService/metadata/image/{productses>PictureUrl}" />&ndash;&gt;-->
+<!--            <Avatar-->
+<!--              src="localService/metadata/image/{productses>PictureUrl}"-->
+<!--              displaySize="XL"-->
+<!--              displayShape="Square"-->
+<!--              showBorder="true"-->
+<!--            />-->
+<!--          </Hbox>-->
+<!--          <Hbox justifyContent="SpaceBetween" alignItems="Center">-->
+<!--            <Button-->
+<!--              icon="sap-icon://cart-4"-->
+<!--              press=".onAddToCart"-->
+<!--              type="Emphasized"-->
+<!--              class="sapUiTinyMarginBegin" />-->
+<!--            <ObjectListItem-->
+<!--              number="{productses>Price}"-->
+<!--              numberUnit="{productses>Currency}">-->
+<!--            </ObjectListItem>-->
+<!--          </Hbox>-->
+<!--        </Vbox>-->
+<!--      </f:content>-->
+<!--    </f:Card>-->
+<!--    &lt;!&ndash;              <GenericTile&ndash;&gt;-->
+<!--    &lt;!&ndash;                header="{productses>Name}"&ndash;&gt;-->
+<!--    &lt;!&ndash;                class="sapUiSmallMargin listProduct"&ndash;&gt;-->
+<!--    &lt;!&ndash;                width="200px"&ndash;&gt;-->
+<!--    &lt;!&ndash;                height="150px"&ndash;&gt;-->
+<!--    &lt;!&ndash;                subheader="{productses>Model}"&ndash;&gt;-->
+<!--    &lt;!&ndash;              >&ndash;&gt;-->
+<!--    &lt;!&ndash;                <TileContent&ndash;&gt;-->
+<!--    &lt;!&ndash;                  unit="{productses>Currency}"&ndash;&gt;-->
+<!--    &lt;!&ndash;                  footer="{productses>Price}"&ndash;&gt;-->
+<!--    &lt;!&ndash;                  tileIcon="sap-icon://cart-4"&ndash;&gt;-->
+<!--    &lt;!&ndash;                >&ndash;&gt;-->
+<!--    &lt;!&ndash;                  <ImageContent&ndash;&gt;-->
+<!--    &lt;!&ndash;                    src="localService/metadata/image/{productses>PictureUrl}"/>&ndash;&gt;-->
+<!--    &lt;!&ndash;                </TileContent>&ndash;&gt;-->
+
+<!--    &lt;!&ndash;              </GenericTile>&ndash;&gt;-->
+<!--  </FlexBox>-->
+
+
+
+<!--  <BusyIndicator size="1.6rem" class="sapUiMediumMarginBegin" />-->
+  <FlexBox
+    id="cardContainer"
+    width="100%"
+    wrap="Wrap"
+    direction="Row"
+    alignItems="Center"
+    class="sapUiResponsiveContentPadding flex-content"
+    items="{myProductModel>/}"
+  >
+
+    <f:Card class="sapUiMediumMargin listProduct" width="300px"
+    >
+      <f:header>
+        <card:Header
+          title="{myProductModel>Name}"
+          subtitle="{myProductModel>Model}"
+          press="onShowDetail"
+
+        />
+      </f:header>
+      <f:content >
+        <Vbox
+          width="300px" height="200px"
+          class="sapUiSmallMargin"
+          justifyContent="SpaceBetween"
+        >
+          <Hbox justifyContent="Center" >
+            <!--                    <Image-->
+            <!--                      width="50%" height="50%"-->
+            <!--                      src="localService/metadata/image/{productses>PictureUrl}" />-->
+            <Avatar
+              src="localService/metadata/image/{myProductModel>PictureUrl}"
+              displaySize="XL"
+              displayShape="Square"
+              showBorder="true"
+            />
+          </Hbox>
+          <Hbox justifyContent="SpaceBetween" alignItems="Center">
+            <Button
+              icon="sap-icon://cart-4"
+              press=".onAddToCart"
+              type="Emphasized"
+              class="sapUiTinyMarginBegin" />
+            <ObjectListItem
+              number="{myProductModel>Price}"
+              numberUnit="{myProductModel>Currency}">
+            </ObjectListItem>
+          </Hbox>
+        </Vbox>
+      </f:content>
+    </f:Card>
+
+  </FlexBox>
+</VBox>
+
+  </ScrollContainer>
+
 </mvc:View>

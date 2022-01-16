@@ -5,281 +5,90 @@
   xmlns:form="sap.ui.layout.form">
   <Page
     id="page"
-    title="{cfg>/pageTitle}"
+    title="{i18n>pageDetail}"
     backgroundDesign="Solid"
     showNavButton="{appView>/smallScreenMode}"
     navButtonPress=".onBack"
     showFooter="true">
-    <landmarkInfo>
-      <PageAccessibleLandmarkInfo
-        rootRole="Region"
-        rootLabel="{i18n>Cart_rootLabel}"
-        contentRole="Main"
-        contentLabel="{i18n>Cart_contentLabel}"
-        footerRole="Region"
-        footerLabel="{i18n>Cart_footerLabel}"
-        headerRole="Region"
-        headerLabel="{i18n>Cart_headerLabel}"/>
-    </landmarkInfo>
-    <headerContent>
-      <Button text="Назад"
-              press=".onNavBack"/>
-      <Button
-        id="editButton"
-        icon="sap-icon://edit"
-        enabled="{parts: [
-					{path: 'cartProducts>/cartEntries'},
-					{path: 'cartProducts>/savedForLaterEntries'}
-				 ], formatter : '.formatter.hasItems'}"
-        visible="{cfg>/notInDelete}"
-        press="check"
-        tooltip="{i18n>cartEditButtonTooltip}"/>
-      <Button text="test" press="check" />
-    </headerContent>
-    <footer>
-      <Toolbar>
-        <Text
-          id="totalPriceText"
-          text="{
-						path : 'cartProducts>/cartEntries',
-						formatter : '.formatter.totalPrice'
-					} EUR"
-          class="sapUiTinyMarginBegin"/>
-        <ToolbarSpacer/>
-        <Button
-          id="proceedButton"
-          type="Accept"
-          text="{i18n>cartProceedButtonText}"
-          enabled="{
-						path: 'cartProducts>/cartEntries',
-						formatter: '.formatter.hasItems'
-					}"
-          visible="{cfg>/notInDelete}"
-          press=".onProceedButtonPress"/>
-        <Button
-          id="doneButton"
-          text="{i18n>cartDoneButtonText}"
-          enabled="true"
-          visible="{cfg>/inDelete}"
-          press=".onEditOrDoneButtonPress"/>
-      </Toolbar>
-    </footer>
     <content>
-
       <Panel>
-        <HBox class="comparebox">
+          <Hbox class="detailContainer" justifyContent="Center"  direction="Column">
+            <VBox>
+              <Text
+                id="detailsActiveImage"
+                text="Active state image:"
+                class="sapUiSmallMarginBottom" />
+            </VBox>
+            <VBox  justifyContent="SpaceAround">
+              <Image
+                src="localService/metadata/image/{myProductModel>PictureUrl}"
+                alt="{i18n>comparisonAlternativeImageText}"
+                densityAware="false"
+                class="sapUiSmallMarginTop"
+                width="500px"
+                height="295px">
+                <detailBox>
+                  <LightBox>
+                    <imageContent>
+                      <LightBoxItem
+                        imageSrc="localService/metadata/image/{myProductModel>PictureUrl}"
+                        title="{myProductModel>Name} {myProductModel>Model}"/>
+                    </imageContent>
+                  </LightBox>
+                </detailBox>
+              </Image>
+            </VBox>
+
+          </Hbox>
+        <HBox      justifyContent="SpaceAround" >
           <VBox>
-            <Text
-              id="detailsActiveImage"
-              text="Active state image:"
-              class="sapUiSmallMarginBottom" />
-            <Image ariaDetails="detailsActiveImage" src="{productses>PictureUrl}"
-                   width="500px"
-                   height="300px"
-                   decorative="false"
-                   press="handleImage3Press"
-                   ariaHasPopup="Menu"/>
+            <form:Form editable="false">
+              <form:layout>
+                <form:ResponsiveGridLayout
+                  labelSpanXL="12"
+                  labelSpanL="12"
+                  labelSpanM="12"
+                  labelSpanS="12"
+                  adjustLabelSpan="false"
+                  emptySpanXL="4"
+                  emptySpanL="4"
+                  emptySpanM="4"
+                  emptySpanS="0"
+                  singleContainerFullSize="false"/>
+              </form:layout>
+              <form:formContainers>
+                <form:FormContainer>
+                  <form:FormElement label="{i18n>productCategory}">
+                    <form:fields>
+                      <Text text="{myProductModel>MainCategory}"/>
+                    </form:fields>
+                  </form:FormElement>
+                  <form:FormElement label="{i18n>productDescription}">
+                    <form:fields>
+                      <Text text="{myProductModel>Name} {myProductModel>Model}"/>
+                    </form:fields>
+                  </form:FormElement>
+
+                </form:FormContainer>
+              </form:formContainers>
+            </form:Form>
           </VBox>
-          <VBox>
-            <Image
-              src="{
-						path : 'productses>PictureUrl',
-						formatter : '.formatter.pictureUrl'
-					}"
-              alt="{i18n>comparisonAlternativeImageText}"
-              densityAware="false"
-              class="sapUiSmallMarginTop"
-              width="100%"
-              height="100%">
-              <detailBox>
-                <LightBox>
-                  <imageContent>
-                    <LightBoxItem
-                      imageSrc="{
-										path : 'PictureUrl',
-										formatter : '.formatter.pictureUrl'
-									}"
-                      title="{Name}"/>
-                  </imageContent>
-                </LightBox>
-              </detailBox>
-            </Image>
-          </VBox>
-          <VBox alignItems="End">
+          <VBox  >
             <ObjectListItem
-              class="productPrice welcomePrice"
-              number="{
-						path : 'Price',
+            class="productPrice welcomePrice"
+            number="{
+						path : 'myProductModel>Price',
 						formatter : '.formatter.price'
 					}"
-              numberUnit="EUR">
-            </ObjectListItem>
-            <ObjectStatus
-              class="sapUiSmallMarginBottom"
-              text="{
-						path : 'Status',
-						formatter : '.formatter.statusText'
-					}"
-              state="{
-						path : 'Status',
-						formatter : '.formatter.statusState'
-					}"/>
+            numberUnit="{myProductModel>Currency}">
+          </ObjectListItem>
             <Button
-              text="{i18n>addToCartShort}"
               type="Emphasized"
+               text="Add Product cart"
               press=".onAddToCart"/>
           </VBox>
         </HBox>
-        <Text text="Что-то "/>
-        <Text text="{productses>id}"/>
-        <Text text="Что-то: {productses>MainCategory}"/>
-        <Text  text="{productses>Name}"/>
-        <Text  text="{productses>Price}"/>
-        <form:Form editable="false">
-          <form:layout>
-            <form:ResponsiveGridLayout
-              labelSpanXL="12"
-              labelSpanL="12"
-              labelSpanM="12"
-              labelSpanS="12"
-              adjustLabelSpan="false"
-              emptySpanXL="4"
-              emptySpanL="4"
-              emptySpanM="4"
-              emptySpanS="0"
-              singleContainerFullSize="false"/>
-          </form:layout>
-          <form:formContainers>
-            <form:FormContainer>
-              <form:FormElement label="{i18n>productCategory}">
-                <form:fields>
-                  <Text text="{productses>MainCategory}"/>
-                </form:fields>
-              </form:FormElement>
-              <form:FormElement label="{i18n>productDescription}">
-                <form:fields>
-                  <Text text="{productses>Name} {productses>Model}"/>
-                </form:fields>
-              </form:FormElement>
-
-            </form:FormContainer>
-          </form:formContainers>
-        </form:Form>
       </Panel>
-<!--      <List-->
-<!--        delete=".onCartEntriesDelete"-->
-<!--        id="entryList"-->
-<!--        items="{-->
-<!--					path : 'cartProducts>/cartEntries',-->
-<!--					sorter : {-->
-<!--						path : 'Name',-->
-<!--						descending : false-->
-<!--					}-->
-<!--				}"-->
-<!--        mode="{cfg>/listMode}"-->
-<!--        noDataText="{i18n>cartNoData}"-->
-<!--        selectionChange=".onEntryListSelect">-->
-<!--        <headerToolbar>-->
-<!--          <Toolbar>-->
-<!--            <Title-->
-<!--              level="H6"-->
-<!--              text="{i18n>Cart_contentLabel}"-->
-<!--              titleStyle="H6"/>-->
-<!--          </Toolbar>-->
-<!--        </headerToolbar>-->
-<!--        <items>-->
-<!--          <ObjectListItem-->
-<!--            intro="{cartProducts>Quantity} x"-->
-<!--            type="{cfg>/listItemType}"-->
-<!--            icon="{-->
-<!--							path : 'cartProducts>PictureUrl',-->
-<!--							formatter : '.formatter.pictureUrl'-->
-<!--						}"-->
-<!--            title="{cartProducts>Name}"-->
-<!--            number="{-->
-<!--							path : 'cartProducts>Price',-->
-<!--							formatter : '.formatter.price'-->
-<!--						}"-->
-<!--            numberUnit="EUR"-->
-<!--            press=".onEntryListPress"-->
-<!--            iconDensityAware="false">-->
-<!--            <attributes>-->
-<!--              <ObjectAttribute-->
-<!--                active="true"-->
-<!--                press=".onSaveForLater"-->
-<!--                text="{i18n>cartSaveForLaterLinkText}"/>-->
-<!--            </attributes>-->
-<!--            <firstStatus>-->
-<!--              <ObjectStatus-->
-<!--                text="{-->
-<!--									path : 'cartProducts>Status',-->
-<!--									formatter : '.formatter.statusText'-->
-<!--								}"-->
-<!--                state="{-->
-<!--									path : 'cartProducts>Status',-->
-<!--									formatter : '.formatter.statusState'-->
-<!--								}"/>-->
-<!--            </firstStatus>-->
-<!--          </ObjectListItem>-->
-<!--        </items>-->
-<!--      </List>-->
-<!--      <List-->
-<!--        delete=".onSaveForLaterDelete"-->
-<!--        id="saveForLaterList"-->
-<!--        items="{-->
-<!--					path : 'cartProducts>/savedForLaterEntries',-->
-<!--					sorter : {-->
-<!--						path : 'Name',-->
-<!--						descending : false-->
-<!--					}-->
-<!--				}"-->
-<!--        mode="{cfg>/listMode}"-->
-<!--        noDataText="{i18n>cartNoItemsSavedForLater}"-->
-<!--        selectionChange=".onEntryListSelect">-->
-<!--        <headerToolbar>-->
-<!--          <Toolbar>-->
-<!--            <Title-->
-<!--              level="H6"-->
-<!--              text="{i18n>cartItemsSavedForLater}"-->
-<!--              titleStyle="H6"/>-->
-<!--          </Toolbar>-->
-<!--        </headerToolbar>-->
-<!--        <items>-->
-<!--          <ObjectListItem-->
-<!--            intro="{cartProducts>Quantity} x"-->
-<!--            type="{cfg>/listItemType}"-->
-<!--            icon="{-->
-<!--							path : 'cartProducts>PictureUrl',-->
-<!--							formatter : '.formatter.pictureUrl'-->
-<!--						}"-->
-<!--            title="{cartProducts>Name}"-->
-<!--            number="{-->
-<!--							path : 'cartProducts>Price',-->
-<!--							formatter : '.formatter.price'-->
-<!--						}"-->
-<!--            numberUnit="EUR"-->
-<!--            press=".onEntryListPress"-->
-<!--            iconDensityAware="false">-->
-<!--            <attributes>-->
-<!--              <ObjectAttribute-->
-<!--                active="true"-->
-<!--                press=".onAddBackToBasket"-->
-<!--                text="{i18n>cartAddToCartLinkText}"/>-->
-<!--            </attributes>-->
-<!--            <firstStatus>-->
-<!--              <ObjectStatus-->
-<!--                text="{-->
-<!--									path : 'cartProducts>Status',-->
-<!--									formatter : '.formatter.statusText'-->
-<!--								}"-->
-<!--                state="{-->
-<!--									path : 'cartProducts>Status',-->
-<!--									formatter : '.formatter.statusState'-->
-<!--								}"/>-->
-<!--            </firstStatus>-->
-<!--          </ObjectListItem>-->
-<!--        </items>-->
-<!--      </List>-->
     </content>
   </Page>
 </mvc:View>

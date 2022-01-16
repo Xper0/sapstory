@@ -36,7 +36,10 @@
         },
         "sap.f": {
         },
-        "sap.ui.layout": {}
+        "sap.ui.layout": {},
+        "sap.tnt": {},
+        "sap.ui.table": {},
+        "sap.viz": {}
       }
     },
     "contentDensities": {
@@ -56,8 +59,11 @@
       },
       "category": {
         "type": "sap.ui.model.json.JSONModel",
-        "uri": "categories.json"
-
+        "uri": "../localService/metadata/categories.json"
+      },
+      "cartProducts": {
+        "type": "sap.ui.model.json.JSONModel",
+      "uri": "../localService/metadata/cart.json"
       }
     },
 
@@ -75,35 +81,66 @@
         "async": true,
         "viewPath": "com.storeapp.storeapp.view",
         "controlAggregation": "pages",
-        "controlId": "app",
+        "controlId": "pageContainer",
         "clearControlAggregation": false
       },
       "routes": [
         {
           "name": "Home",
           "pattern": "",
+          "controlAggregation": "beginColumnPages",
           "target": [
             "TargetMainView"
           ]
         },
         {
+          "name": "Home",
+          "pattern": "",
+          "controlAggregation": "beginColumnPages",
+          "target": [
+            "Home"
+          ]
+        },
+        {
           "pattern": "Products",
           "name": "Products",
-          "target": "Products",
-          "controlAggregation": "beginColumnPages"
+          "target": "Products"
+        },
+        {
+          "pattern": "Products/{category}",
+          "name": "Category",
+          "target": "Category"
         },
         {
           "pattern": "Products/detail/{detailId}",
           "name": "detail",
-          "controlAggregation": "endColumnPages",
           "target": [
-            "Products",
+
             "Detail"]
+        },
+        {
+          "pattern": "Cart",
+          "name": "Cart",
+          "target": "Cart"
+        },
+        {
+          "pattern": "purchaseStatistics",
+          "name": "purchaseStatistics",
+          "target": [
+            "Statistics"]
         }
 
           ],
       "targets": {
         "TargetMainView": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Home",
+          "viewName": "MainView",
+          "viewLevel" : 1
+        },
+        "Home": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
@@ -118,9 +155,31 @@
           "transition": "slide",
           "viewLevel" : 2
         },
+        "Category": {
+          "viewId": "Products",
+          "viewName": "Products",
+          "viewType": "XML",
+          "transition": "slide",
+          "viewLevel" : 2
+        },
         "Detail": {
           "viewType": "XML",
           "viewName": "Detail"
+
+        },
+        "Cart": {
+          "viewId": "Cart",
+          "viewName": "Cart",
+          "viewType": "XML",
+          "transition": "slide",
+          "viewLevel" : 4
+        },
+        "Statistics": {
+          "viewId": "Statistics",
+          "viewName": "PurchaseStatistics",
+          "viewType": "XML",
+          "transition": "slide",
+          "viewLevel" : 5
         }
       }
     },

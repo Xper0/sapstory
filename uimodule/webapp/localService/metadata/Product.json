@@ -5,42 +5,74 @@
     "MainCategory": "Monitors",
     "Name": "Acer",
     "Model": "K272HLEbid (UM.HX3EE.E04)",
-    "PictureUrl": "metadata/image/mon1.jpg",
-    "Price": "956"
+    "PictureUrl": "mon1.jpg",
+    "Price": "956",
+    "Currency": "USD"
   },
   {
     "id": 2,
     "MainCategory": "Keyboard",
     "Name": "Defender",
-
-    "Price": "1200"
+    "Model": "Oscar SM-660L Pro Black USB",
+    "PictureUrl": "keyboard1.jpg",
+    "Price": "1200",
+    "Currency": "USD"
   },
   {
     "id": 3,
     "MainCategory": "PC",
-    "Name": "PC aerocool",
-    "PictureUrl": "",
-    "Price": "5000"
+    "Name": "PC Aerocool",
+    "Model": "Aerocool Cylon WG",
+    "PictureUrl": "aerocool1.png",
+    "Price": "5000",
+    "Currency": "USD"
   },
   {
     "id": 4,
     "MainCategory": "Keyboard",
     "Name": "China mex",
-    "PictureUrl": "",
-    "Price": "1200"
+    "PictureUrl": "aerocool1.png",
+    "Price": "1200",
+    "Currency": "USD"
   },
   {
     "id": 5,
     "MainCategory": "PC",
     "Name": "Intel",
     "PictureUrl": "",
-    "Price": "4900"
+    "Price": "4900",
+    "Currency": "USD"
   },
   {
     "id": 6,
     "MainCategory": "Monitors",
     "Name": "ViewSonic",
     "PictureUrl": "",
-    "Price": "1900"
-  }
+    "Price": "1900",
+    "Currency": "USD"
+  },
+  {
+  "id": 7,
+  "MainCategory": "Monitors",
+  "Name": "ViewSonic",
+  "PictureUrl": "",
+  "Price": "1900",
+  "Currency": "USD"
+},
+  {
+  "id": 8,
+  "MainCategory": "Monitors",
+  "Name": "ViewSonic",
+  "PictureUrl": "",
+  "Price": "1900",
+  "Currency": "USD"
+},
+  {
+  "id": 9,
+  "MainCategory": "Monitors",
+  "Name": "ViewSonic",
+  "PictureUrl": "",
+  "Price": "1900",
+  "Currency": "USD"
+}
 ]

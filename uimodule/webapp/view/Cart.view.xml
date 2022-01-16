@@ -1,0 +1,135 @@
+<mvc:View
+  controllerName="com.storeapp.storeapp.controller.Cart"
+  xmlns:mvc="sap.ui.core.mvc"
+  displayBlock="true"
+  xmlns="sap.m"
+  xmlns:f="sap.f"
+  xmlns:card="sap.f.cards"
+>
+  <Page
+    title="Cart"
+    showNavButton="true"
+  >
+    <content >
+      <FlexBox
+        width="98%"
+        height="auto"
+        wrap="Wrap"
+        direction="Column"
+        items="{cartProducts>/cartEntries}"
+        class="cartCard content-Card"
+        alignItems="SpaceAround"
+      >
+        <f:Card class="sapUiMediumMargin Header-card cardText "
+                content="onShowDetail"
+                items="{cartProducts>/cartEntries}"
+        >
+          <f:header>
+            <card:Header
+              title="{cartProducts>Quantity} X"
+              subtitle="{cartProducts>Name} {cartProducts>Model}"
+              press="onShowDetail"
+            >
+            </card:Header>
+          </f:header>
+          <f:content >
+            <Hbox
+              class="cart-box"
+              justifyContent="SpaceBetween"
+              alignItems="Center"
+            >
+              <Image
+                src="localService/metadata/image/{cartProducts>PictureUrl}"
+                width="250px"
+                height="250px"
+              />
+<!--              <Avatar-->
+<!--                src="localService/metadata/image/{cartProducts>PictureUrl}"-->
+<!--                displaySize="L"-->
+<!--                displayShape="Square"-->
+<!--                showBorder="true"-->
+<!--              />-->
+             <Hbox justifyContent="Center" alignItems="Center"   >
+               <Vbox justifyContent="Center" alignItems="Center" >
+                 <Text
+                   class="Cart-title"
+                   text="{cartProducts>Name}"
+                 />
+                 <Text
+                   class="Cart-desc"
+                   text="{cartProducts>Model}"
+                 />
+                 <StepInput
+                   id="inputRange"
+                   class="input-Range"
+                   value="{cartProducts>Quantity}"
+                   displayValuePrecision="{displayValuePrecision}"
+                   width="100%"
+                   step="1"
+                   largerStep="{largerStep}"
+                   stepMode="{stepMode}"
+                   valueState="{valueState}"
+                   enabled="{enabled}"
+                   editable="{editable}"
+                   description="{description}"
+                   fieldWidth="{fieldWidth}"
+                   textAlign="Center"
+                   validationMode="{validationMode}"
+                   change="onChangeValue"/>
+<!--                 <Text-->
+<!--                   text="{-->
+<!--						            path : 'cartProducts>/cartEntries',-->
+<!--					             formatter: '.formatter.itemPrice'-->
+<!--					            }"-->
+<!--                 />-->
+
+                 <ObjectListItem
+                   id="productPrice"
+                   number="{cartProducts>Price}"
+                   numberUnit="{cartProducts>Currency}">
+                 </ObjectListItem>
+               </Vbox>
+               <Vbox justifyContent="Center" alignItems="Center" class="sapUiMediumMargin ">
+                 <Button
+                   width="55px"
+                   height="55px"
+                   class="delete__Item"
+                   icon="sap-icon://delete"
+                   press="onDeleteItem" />
+               </Vbox>
+             </Hbox>
+            </Hbox>
+          </f:content>
+        </f:Card>
+      </FlexBox>
+    </content>
+    <footer>
+      <Toolbar height="5.5rem">
+        <Text
+          id="totalPriceText"
+          text="Sum total: {
+						path : 'cartProducts>/cartEntries',
+						formatter : '.formatter.totalPrice'
+					} USD"
+          class="sapUiTinyMarginBegin toolBar-Text"/>
+        <ToolbarSpacer/>
+        <Button
+          id="proceedButton"
+          type="Accept"
+          text="{i18n>productCheckout}"
+          press=".onProceedButtonPress"/>
+        <Button
+          id="doneButton"
+          text="{i18n>cartDoneButtonText}"
+          enabled="true"
+          visible="{cfg>/inDelete}"
+          press=".onEditOrDoneButtonPress"/>
+      </Toolbar>
+    </footer>
+
+  </Page>
+
+
+
+
+</mvc:View>

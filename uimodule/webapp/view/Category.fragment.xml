@@ -1,23 +1,71 @@
 <core:FragmentDefinition
   xmlns="sap.m"
   xmlns:core="sap.ui.core">
-
-  <Menu itemSelected="onPageProduct" class="menu-list">
-    <MenuItem
-     text="{
-						path: 'category>categ'
-						}"
-     class="menu-item"
-    />
-    <MenuItem class="menu-item" text="Мониторы" />
-    <MenuItem text="Клавиатуры" class="menu-item" >
+    <List
+      id="categoryList"
+      mode="None"
+      busyIndicatorDelay="0"
+      items="{category>/}">
       <items>
-        <MenuItem title="{category>categ}"/>
-        <MenuItem text="Franchise Store"/>
-        <MenuItem text="Temporary Store"/>
-        <MenuItem text="Other"/>
+        <StandardListItem
+          title="{category>CategoryName}"
+          type="Active"
+          press=".onCategoryListItemPress"
+          tooltip="{i18n>openCategoryProducts} {CategoryName}">
+          <customData>
+            <core:CustomData
+              key="id"
+              value="{Category}"/>
+          </customData>
+        </StandardListItem>
       </items>
-    </MenuItem>
-    <MenuItem text="Export Map" class="menu-item"/>
-  </Menu>
+    </List>
+<!--  </VBox>-->
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  <Menu-->
+<!--    itemSelected="onPageProduct"-->
+<!--    class="menu-list"-->
+
+<!--  >-->
+<!--    <MenuItem text="{category>categ}" />-->
+<!--    <MenuItem text="../localService/metadata/{category>categ}"/>-->
+<!--    <items >-->
+<!--      <MenuItem text="{category>categ}"/>-->
+<!--&lt;!&ndash;      <MenuItem text="Partner Store"/>&ndash;&gt;-->
+<!--&lt;!&ndash;      <MenuItem text="Franchise Store"/>&ndash;&gt;-->
+<!--&lt;!&ndash;      <MenuItem text="Temporary Store"/>&ndash;&gt;-->
+<!--&lt;!&ndash;      <MenuItem text="Other"/>&ndash;&gt;-->
+<!--    </items>-->
+<!--    <MenuItem text="Мониторс" />-->
+<!--    <MenuItem  text="{category>/categ}" />-->
+<!--    <items>-->
+<!--      <MenuItem-->
+<!--        text="{category>categ}"-->
+<!--      />-->
+<!--    </items>-->
+<!--    <MenuItem-->
+<!--     text="{category>categ}"-->
+<!--    />-->
+<!--    <MenuItem class="menu-item" text="Мониторы" />-->
+<!--    <MenuItem text="Клавиатуры" class="menu-item" >-->
+<!--      <items>-->
+<!--        <MenuItem title="{category>categ}"/>-->
+<!--        <MenuItem text="Franchise Store"/>-->
+<!--        <MenuItem text="Temporary Store"/>-->
+<!--        <MenuItem text="Other"/>-->
+<!--      </items>-->
+<!--    </MenuItem>-->
+<!--    <MenuItem text="Export Map" class="menu-item"/>-->
+<!--  </Menu>-->
 </core:FragmentDefinition>
